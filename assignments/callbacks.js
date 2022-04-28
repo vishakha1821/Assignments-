@@ -13,20 +13,51 @@ function getPost () {
     }, 1000);
 }
 
-function createPost(post, callback){
-    setTimeout(() =>{
-        posts.push({...post, createdAt: new Date().getTime()});
-        callback();
-    },2000);
+function createPost(post){
+    return new Promise((resolve, reject)=>{
+        setTimeout(()=>
+        posts.push(post))
+
+        const error = false;
+        if(!error){
+            resolve()
+        } else {
+            reject('Error: Something went wrong!')
+        }
+    },2000 )
 }
-function create4post(post, callback2){
-    setTimeout(() => {
-        posts.push({...post, createdAt: new Date().getTime()});
-        callback2();
-    }, 3000)
-}
+function create4post(post){
+    return new Promise((resolve, reject)=>{
+        setTimeout(()=>
+        posts.push(post))
+
+        const error = false;
+        if(!error){
+            resolve()
+        } else {
+            reject('Error: Something went wrong!')
+        }
+    },3000 )
+
+    }
+    
+
+    
+    
+/*createPost({title:'post three', body:'this is the third post'})
+.then(getPost)
+.catch(err => console.log(err));
+create$Post({title:'post four', body:'this is the fourth post'})
+.then(getPost)
+.catch(err => console.log(err));*/
+
+//PROMISE ALL 
+const promise1 = Promise.resolve('Hello world');
+const promise2 = 10;
+const promise3 = new Promise((resolve, reject)=>{
+    setTimeout(resolve, 2000, 'Goodbye')
+})
+Promise.all([promise1, promise2, promise3]).then(values => console.log(values));
 
 
 
-createPost({title: 'post three', body: 'this is a third post'},{title: 'post four', body: 'this is a fourth post'},
- getPost);
